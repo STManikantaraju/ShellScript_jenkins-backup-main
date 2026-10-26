@@ -1,11 +1,5 @@
 #!/bin/bash
 
-#---------------------------------------------#
-# Author: Adam WezvaTechnologies
-# Call/Whatsapp: +91-9739110917
-#---------------------------------------------#
-
-
 # Ensure script is run with root privileges
 if [ "$EUID" -ne 0 ]; then
   echo "Please run this script as root or sudo privileges "
@@ -31,7 +25,7 @@ log_message() {
 
 # Function to upload backup tar to S3 bucket
 copyto_s3() {
-    AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY aws s3 cp ${FINAL_TAR_NAME} s3://wezvatech-jenkins-backup-9739110917/
+    AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY aws s3 cp ${FINAL_TAR_NAME} s3://<bucket_name>/
     exitcode=$?
     if [ "$exitcode" != "1" ] && [ "$exitcode" != "0" ]; then
       exit $exitcode
